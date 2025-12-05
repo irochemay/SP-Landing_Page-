@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bebie's Water Refilling Station</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+   
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1e40af;
+            --primary-blue-light: #dbeafe;
+            --secondary-green: #10b981;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Navigation */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .navbar-brand {
+            color: var(--gray-900) !important;
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding-top: 100px;
+            padding-bottom: 80px;
+            background: linear-gradient(to bottom, #eff6ff, #ffffff);
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+        }
+        
+        .hero-image-bg {
+            position: absolute;
+            inset: 0;
+            background-color: #bfdbfe;
+            border-radius: 24px;
+            transform: rotate(3deg);
+        }
+        
+        .hero-image {
+            position: relative;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        /* Process Cards */
+        .process-card {
+            border: 2px solid #dbeafe;
+            transition: all 0.3s ease;
+        }
+        
+        .process-card:hover {
+            border-color: #93c5fd;
+        }
+        
+        .process-number {
+            width: 48px;
+            height: 48px;
+            background-color: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Benefits Section */
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+        
+        .benefit-icon.green {
+            background-color: #d1fae5;
+            color: var(--secondary-green);
+        }
+        
+        .benefit-icon.blue {
+            background-color: var(--primary-blue-light);
+            color: var(--primary-blue);
+        }
+        
+        .benefit-icon.purple {
+            background-color: #e9d5ff;
+            color: #9333ea;
+        }
+        
+        .benefit-icon.orange {
+            background-color: #fed7aa;
+            color: #ea580c;
+        }
+    
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: #9ca3af;
+            padding: 48px 0;
+        }
+        
+        .footer-title {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: #60a5fa;
+        }
+        
+        /* Custom Badge */
+        .badge-eco {
+            background-color: var(--primary-blue-light);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-benefit {
+            background-color: #d1fae5;
+            color: var(--secondary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-process {
+            background-color: var(--primary-blue-light);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Button customization */
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-blue-dark);
+            border-color: var(--primary-blue-dark);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .card {
+            border-radius: 12px;
+        }
+        
+        .rounded-3xl {
+            border-radius: 24px;
+        }
+        
+        .check-icon {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-droplet-fill text-primary me-2" style="font-size: 2rem;"></i>
+                <span>Bebie's Water Refilling Station</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#process">Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#purification">Purification</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits">Benefits</a>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="badge-eco mb-3 d-inline-block">Eco-Friendly Solution</span>
+                    <h1 class="display-4 fw-semibold text-dark mb-4">Pure Water, Sustainable Future</h1>
+                    <p class="lead text-muted mb-4">
+                        Discover our state-of-the-art water refilling process that ensures every drop is purified, tested, and safe for your consumption. Join the movement towards sustainable water solutions.
+                    </p>
+                    <div class="row g-4">
+                        <div class="col-4">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Bottles Refilled</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Purity Level</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-number">11 hours</div>
+                            <div class="stat-label">Available</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-wrapper">
+                        <div class="hero-image-bg"></div>
+                        <img src="https://images.unsplash.com/photo-1628239532623-c035054bff4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGJvdHRsZSUyMHJlZmlsbCUyMHN0YXRpb258ZW58MXx8fHwxNzYwNzc4NzE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
+                             alt="Water refilling station" 
+                             class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Overview--> 
+     <section id="Overview" class="py-5 bg-white">
+        <div class="container">
+       <div class="text-center mb-5">
+                
+                <h2 class="display-5 fw-semibold text-dark mb-3">Business Overview</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                    Bebie’s Water Refilling Station is a business that provides clean, safe, and
+                     affordable drinking water to the local community. The business aims to meet the increasing
+                      demand for purified water by offering high-quality refilling services that ensure customer 
+                      satisfaction and health safety. The station uses a modern water purification system that includes
+                      sediment filtration, activated carbon filtering, reverse osmosis, and UV sterilization to
+                       guarantee that every drop of water is pure and safe for drinking. It offers refilling services 
+                       for various container sizes and provides delivery options for households, offices, and schools. 
+                       Bebie’s Water Refilling Station focuses on reliability, cleanliness, and excellent customer service. 
+                       Its goal is to build a trusted name in the community while promoting health, convenience, and 
+                       sustainability through the use of purified drinking water.
+                </p>
+            </div>
+        </div>
+
+    <!-- Process Section -->
+    <section id="Process" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge-process mb-3 d-inline-block">Our Process</span>
+                <h2 class="display-5 fw-semibold text-dark mb-3">How Water Refilling Works</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                    We have two delivery process that ensures the highest quality water reaches to our customers.
+                </p>
+            </div>
+            <div>
+            <p> <center><b> DELIVERY PROCESS:</b></center> </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">1</div>
+                        <h5 class="fw-semibold mb-2">Write the delivery details in the notebook.</h5>
+                        <p class="text-muted small mb-0">
+                            The staff records customer details such as name, address, and number of gallons ordered.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">2</div>
+                        <h5 class="fw-semibold mb-2">Prepare for delivery</h5>
+                        <p class="text-muted small mb-0">
+                            The water containers are filled and loaded for transport.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">3</div>
+                        <h5 class="fw-semibold mb-2">Deliver Water</h5>
+                        <p class="text-muted small mb-0">
+                            The delivery staff brings the water to the customer’s location.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">4</div>
+                        <h5 class="fw-semibold mb-2">Collect Payment</h5>
+                        <p class="text-muted small mb-0">
+                            Payment is collected from the customer upon delivery
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">5</div>
+                        <h5 class="fw-semibold mb-2">Record payment in notebook.</h5>
+                        <p class="text-muted small mb-0">
+                            The payment details are noted down manually for record-keeping.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">6</div>
+                        <h5 class="fw-semibold mb-2">End OF Day manually total all sales</h5>
+                        <p class="text-muted small mb-0">
+                            At the end of the business day, all recorded payments (both delivery and walk-in) are manually totaled to determine the daily sales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p> <center><b> WALK-IN PROCESS:</b></center> </p>
+            </div>
+                
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">1</div>
+                        <h5 class="fw-semibold mb-2">Write walk in order in notebook.</h5>
+                        <p class="text-muted small mb-0">
+                            The staff records the walk-in customer’s order details.
+                        </p>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">2</div>
+                        <h5 class="fw-semibold mb-2">Fill WAter container</h5>
+                        <p class="text-muted small mb-0">
+                            The requested container(s) are filled with purified water.
+                        </p>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">3</div>
+                        <h5 class="fw-semibold mb-2">Collect Payment</h5>
+                        <p class="text-muted small mb-0">
+                            The customer pays at the counter.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">4</div>
+                        <h5 class="fw-semibold mb-2">Record Payment in notebook</h5>
+                        <p class="text-muted small mb-0">
+                            The payment transaction is written down manually
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card process-card h-100 p-4">
+                        <div class="process-number">5</div>
+                        <h5 class="fw-semibold mb-2">End OF Day manually total all sales</h5>
+                        <p class="text-muted small mb-0">
+                            At the end of the business day, all recorded payments (both delivery and walk-in) are manually totaled to determine the daily sales.
+                        </p>
+                    </div>
+                </div>
+
+
+    <!-- Purification -->
+      <section id="purification" class="py-5 bg-white">
+    <section class="py-5" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <img src="c:\Users\Hp\Downloads\waterstation.jpg" alt="Water Purification Process"
+                         class="rounded-3xl shadow-lg w-100"
+                         style="height: 500px; object-fit: cover;">
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1">
+                    <h2 class="display-5 fw-semibold text-dark mb-4">Advanced Purification Technology</h2>
+                    <p class="text-muted mb-4">
+                        Our cutting-edge filtration system combines multiple purification methods to deliver the cleanest, safest drinking water. Each stage is carefully monitored and maintained to ensure optimal performance.
+                    </p>
+                    <div class="mb-3 d-flex gap-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <h6 class="fw-semibold mb-1">Multi-Stage Filtration</h6>
+                            <p class="text-muted small mb-0">Removes 99.9% of contaminants including bacteria, viruses, and heavy metals</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 d-flex gap-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <h6 class="fw-semibold mb-1">Real-Time Monitoring</h6>
+                            <p class="text-muted small mb-0">Advanced sensors continuously check water quality parameters</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 d-flex gap-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <h6 class="fw-semibold mb-1">Certified Standards</h6>
+                            <p class="text-muted small mb-0">Meets and exceeds international water quality standards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge-benefit mb-3 d-inline-block">Potential Benefits</span>
+                <h2 class="display-5 fw-semibold text-dark mb-3">Why Choose Bibie's Water Refilling Station?</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                    Embrace a sustainable lifestyle while enjoying premium quality water at affordable prices
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 p-4 text-center border-0 shadow-sm">
+                        <div class="benefit-icon green">
+                            <i class="bi bi-recycle"></i>
+                        </div>
+                        <h5> <b> Affordale Access </b></h5>
+                        <p class="text-muted small mb-0">
+                          Provides clean, safe drinking water at a lower cost than bottled water, saving money for consumers.
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 p-4 text-center border-0 shadow-sm">
+                        <div class="benefit-icon blue">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+                        <h5> <b> Environment Impact  </b></h5>
+                        <p class="text-muted small mb-0">
+                             Reduces single-use plastic waste, helping to protect the environment and marine life.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 p-4 text-center border-0 shadow-sm">
+                        <div class="benefit-icon purple">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                         <h5> <b> Customizable Supply  </b></h5>
+                        <p class="text-muted small mb-0">
+                             Allows customers to refill with different water volumes, reducing waste from unused water.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 p-4 text-center border-0 shadow-sm">
+                        <div class="benefit-icon orange">
+                            <i class="bi bi-funnel-fill"></i>
+                        </div>
+                         <h5> <b> Consistent Water Quality </b></h5>
+                        <p class="text-muted small mb-0">
+                           Ensures reliable access to good-quality water, providing peace of mind about what is consumed daily.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-droplet-fill text-primary me-2" style="font-size: 1.5rem;"></i>
+                        <span class="text-white fw-semibold">Bebie's Water Refilling Station</span>
+                    </div>
+                    <p class="small">
+                        Providing clean, safe, and sustainable water solutions for a better tomorrow.
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="footer-title">Company</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">About Us</a></li>
+                        <li class="mb-2"><a href="#">Regulations</a></li>
+                        <li class="mb-2"><a href="#">Infastructure</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="footer-title">Resources</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                        <li class="mb-2"><a href="#">Water Quality Reports</a></li>
+                        <li class="mb-2"><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="footer-title">Contact</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">bibiesstation@gmail.com</li>
+                        <li class="mb-2">1-800-REFILL-H2O</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top pt-4 text-center small" style="border-color: #374151 !important;">
+                <p class="mb-0">&copy; 2025 Bebie's Water Refilling Station. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

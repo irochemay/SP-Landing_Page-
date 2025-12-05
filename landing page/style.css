@@ -1,0 +1,201 @@
+:root {
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1e40af;
+            --primary-blue-light: #dbeafe;
+            --secondary-green: #10b981;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Navigation */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .navbar-brand {
+            color: var(--gray-900) !important;
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding-top: 100px;
+            padding-bottom: 80px;
+            background: linear-gradient(to bottom, #eff6ff, #ffffff);
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+        }
+        
+        .hero-image-bg {
+            position: absolute;
+            inset: 0;
+            background-color: #bfdbfe;
+            border-radius: 24px;
+            transform: rotate(3deg);
+        }
+        
+        .hero-image {
+            position: relative;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        /* Process Cards */
+        .process-card {
+            border: 2px solid #dbeafe;
+            transition: all 0.3s ease;
+        }
+        
+        .process-card:hover {
+            border-color: #93c5fd;
+        }
+        
+        .process-number {
+            width: 48px;
+            height: 48px;
+            background-color: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Benefits Section */
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+        
+        .benefit-icon.green {
+            background-color: #d1fae5;
+            color: var(--secondary-green);
+        }
+        
+        .benefit-icon.blue {
+            background-color: var(--primary-blue-light);
+            color: var(--primary-blue);
+        }
+        
+        .benefit-icon.purple {
+            background-color: #e9d5ff;
+            color: #9333ea;
+        }
+        
+        .benefit-icon.orange {
+            background-color: #fed7aa;
+            color: #ea580c;
+        }
+    
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: #9ca3af;
+            padding: 48px 0;
+        }
+        
+        .footer-title {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: #60a5fa;
+        }
+        
+        /* Custom Badge */
+        .badge-eco {
+            background-color: var(--primary-blue-light);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-benefit {
+            background-color: #d1fae5;
+            color: var(--secondary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-process {
+            background-color: var(--primary-blue-light);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Button customization */
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-blue-dark);
+            border-color: var(--primary-blue-dark);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .card {
+            border-radius: 12px;
+        }
+        
+        .rounded-3xl {
+            border-radius: 24px;
+        }
+        
+        .check-icon {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
